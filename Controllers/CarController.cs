@@ -27,10 +27,11 @@ namespace lesson6_handson.Controllers
         {
             return await _context.cars.ToListAsync();
         }
-    
-        public async Task<ActionResult<IEnumerable<Car>>> GetLessThanThree()
+
+        [HttpGet("where/{pass}")]
+        public async Task<ActionResult<IEnumerable<Car>>> Getcarswhere(int pass)
         {
-            return await _context.cars.Where(c => c.NumberOfPassengers < 3).ToListAsync();
+            return await _context.cars.Where(c => c.NumberOfPassengers < pass).OrderBy(s => s.Year).ToListAsync();
         }
 
         // GET: api/Car/5
