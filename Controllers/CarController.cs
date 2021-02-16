@@ -27,6 +27,11 @@ namespace lesson6_handson.Controllers
         {
             return await _context.cars.ToListAsync();
         }
+    
+        public async Task<ActionResult<IEnumerable<Car>>> GetLessThanThree()
+        {
+            return await _context.cars.Where(c => c.NumberOfPassengers < 3).ToListAsync();
+        }
 
         // GET: api/Car/5
         [HttpGet("{id}")]
@@ -81,7 +86,7 @@ namespace lesson6_handson.Controllers
             _context.cars.Add(car);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetCar", new { id = car.Id }, car);
+            return CreatedAtAction(nameof(GetCar), new { id = car.Id }, car);
         }
 
         // DELETE: api/Car/5
