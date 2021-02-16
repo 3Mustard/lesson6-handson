@@ -11,6 +11,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Microsoft.EntityFrameworkCore;
+using SimpleWebAPI.Models;
 
 namespace lesson6_handson
 {
@@ -28,6 +30,8 @@ namespace lesson6_handson
         {
 
             services.AddControllers();
+            services.AddDbContext<CarContext>(opt =>
+            opt.UseInMemoryDatabase("car"));
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "lesson6_handson", Version = "v1" });
